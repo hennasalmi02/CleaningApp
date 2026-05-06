@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, FlatList, Pressable, StyleSheet, ScrollView, RefreshControl } from "react-native";
+import { View, Text, Pressable, StyleSheet, ScrollView, RefreshControl } from "react-native";
 import * as SQLite from "expo-sqlite";
 
 export default function HomeScreen() {
@@ -103,65 +103,6 @@ export default function HomeScreen() {
     }
 
     return false;
-  };
-
-  const isDone = (todoId, date) => {
-    const key = `${todoId}_${date.toISOString().split("T")[0]}`;
-    return doneSet.has(key);
-  };
-
-  const renderTask = ({ item }) => {
-    const todayKey = `${item.id}_${getToday()}`;
-    const doneToday = doneSet.has(todayKey);
-
-    return (
-      <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          padding: 10,
-          backgroundColor: "#f2f2f2",
-          marginVertical: 4,
-          borderRadius: 8,
-        }}
-      >
-        <View style={{ flex: 1 }}>
-          <Text
-            style={{
-              fontWeight: "bold",
-              color: doneToday ? "#888" : "#000",
-            }}
-          >
-            {item.title}
-          </Text>
-
-          <View style={styles.roomTag}>
-            <Text style={styles.roomText}>🏠 {item.room}</Text>
-          </View>
-        </View>
-
-        <Pressable
-          onPress={() => markDone(item.id)}
-          style={{
-            width: 24,
-            height: 24,
-            borderRadius: 6,
-            borderWidth: 2,
-            borderColor: "#2196F3",
-            alignItems: "center",
-            justifyContent: "center",
-            marginLeft: 10,
-            backgroundColor: doneToday ? "#2196F3" : "transparent",
-          }}
-        >
-          {doneToday && (
-            <Text style={{ color: "white", fontSize: 14, fontWeight: "bold" }}>
-              ✓
-            </Text>
-          )}
-        </Pressable>
-      </View>
-    );
   };
 
   const styles = StyleSheet.create({

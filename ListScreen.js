@@ -3,7 +3,6 @@ import * as SQLite from "expo-sqlite";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import {
-  Button,
   TextInput,
   View,
   Text,
@@ -12,7 +11,6 @@ import {
   TouchableOpacity,
   ScrollView,
   RefreshControl,
-  Pressable,
 } from "react-native";
 
 export default function ListScreen({ navigation }) {
@@ -110,17 +108,6 @@ export default function ListScreen({ navigation }) {
     } catch (error) {
       console.error(error);
     }
-  };
-
-  const markDone = async (id) => {
-    const today = new Date().toISOString().split("T")[0];
-
-    await db.runAsync("INSERT INTO todo_done (todoId, date) VALUES (?, ?)", [
-      id,
-      today,
-    ]);
-
-    await updateList();
   };
 
   React.useEffect(() => {
